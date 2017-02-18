@@ -2,12 +2,12 @@ import 'babel-polyfill'
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
 import { applyMiddleware, createStore } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+import { createLogicMiddleware } from 'redux-logic'
 import { Provider } from 'react-redux'
 import * as timer from './timer'
 
-const sagaMiddleware = createSagaMiddleware()
-const createStoreWithMiddleware = applyMiddleware(sagaMiddleware)(createStore)
+const logicMiddleware = createLogicMiddleware(timer.logics)
+const createStoreWithMiddleware = applyMiddleware(logicMiddleware)(createStore)
 
 const store = createStoreWithMiddleware(timer.reducer)
 
@@ -16,7 +16,5 @@ const Root = () => (
     <timer.View/>
   </Provider>
 )
-
-sagaMiddleware.run(timer.saga)
 
 ReactDOM.render(<Root/>, document.getElementById('root'))

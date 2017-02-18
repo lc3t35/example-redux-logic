@@ -6,7 +6,7 @@ import * as actions from './actions'
 import { getFormattedTime, getStatus } from './reducer'
 
 export reducer from './reducer'
-export saga from './saga'
+export logics from './logics'
 
 export const View = connect(
   state => ({
